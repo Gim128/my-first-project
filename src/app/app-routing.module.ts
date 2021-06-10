@@ -6,11 +6,21 @@ import {OrderPageComponent} from "./components/order-page/order-page.component";
 import {NotFoundPageComponent} from "./components/not-found-page/not-found-page.component";
 import {OrderGuard} from "./guards/order.guard";
 import {LoginPageComponent} from "./components/login-page/login-page.component";
+import {SaveCustomerPageComponent} from "./components/customer-page/inner-items/save-customer-page/save-customer-page.component";
+import {DeleteCustomerPageComponent} from "./components/customer-page/inner-items/delete-customer-page/delete-customer-page.component";
+import {UpdateCustomerPageComponent} from "./components/customer-page/inner-items/update-customer-page/update-customer-page.component";
+import {SearchCustomerPageComponent} from "./components/customer-page/inner-items/search-customer-page/search-customer-page.component";
 
 const routes: Routes = [
   // {path:"", component:CustomerPageComponent},
   {path:"", redirectTo:'/customer', pathMatch:'full'},
-  {path:'customer',  component:CustomerPageComponent},
+  {path:'customer',  component:CustomerPageComponent, children: [
+      {path: '', redirectTo: '/save-customer', pathMatch:'full'},
+      {path: 'save-customer', component: SaveCustomerPageComponent},
+      {path: 'delete-customer/:id', component: DeleteCustomerPageComponent},
+      {path: 'update-customer', component: UpdateCustomerPageComponent},
+      {path: 'search-customer', component: SearchCustomerPageComponent},
+    ]},
   {path:'item',  component:ItemPageComponent},
   {path:'order',  component:OrderPageComponent,canActivate:[OrderGuard]},
   {path:'login',  component:LoginPageComponent},

@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerPageComponent implements OnInit {
 
+  selectedId='';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  LoadPage(link: string) {
+
+    if (link==='delete-customer'){
+      // this._router.navigate(['/customer/' + link, 'c001']);
+      this._router.navigate(['/customer/' + link, this.selectedId]);
+      return;
+    }
+
+
+    this._router.navigate(['/customer/' + link]);
+  }
 }
